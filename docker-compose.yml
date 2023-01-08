@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  webserver:
+    image: nginx:alpine
+    environment:
+      - VIRTUAL_HOST=example.com
+      - LETSENCRYPT_HOST=example.com
+    volumes:
+      - ./app:/usr/share/nginx/html
+    networks: 
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external: true
